@@ -1,0 +1,19 @@
+sudo: required
+language: generic
+services:
+  # we need a copy of docker running
+  - docker
+
+before_install:
+  # build our image using Dockerfile.dev
+  - docker build -t joelclim/docker-react-frontend -f Dockerfile.dev Dockerfile.dev
+
+scripts:
+  # run our test suite
+  # - docker run joelclim/docker-react-frontend npm run test -- --coverage
+  #
+  # CI=true terminates the test suite. You can read up on the CI=true variable here:
+  #   https://facebook.github.io/create-react-app/docs/running-tests#linux-macos-bash
+  # and environment variables in Docker here:
+  #   https://docs.docker.com/engine/reference/run/#env-environment-variables
+  - docker run -e CI=true joelclim/docker-react-frontend npm run test -- --coverage
