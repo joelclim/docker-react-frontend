@@ -6,7 +6,7 @@ services:
 
 before_install:
   # build our image using Dockerfile.dev
-  - docker build -t joelclim/docker-react-frontend -f Dockerfile.dev Dockerfile.dev
+  - docker build -t joelclim/docker-react-frontend -f Dockerfile.dev .
 
 scripts:
   # run our test suite
