@@ -17,3 +17,30 @@ scripts:
   # and environment variables in Docker here:
   #   https://docs.docker.com/engine/reference/run/#env-environment-variables
   - docker run -e CI=true joelclim/docker-react-frontend npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+
+  # The region code can be found by clicking the region 
+  #   in the toolbar next to your username in AWS Management Console.
+  region: "us-east-1"      
+  
+  # Elastic Beanstalk Application Name
+  app: "docker-react-frontend"
+
+  # Elastic Beanstalk Environment Name (all in lower case)
+  env: "dockerreactfrontend-env"        
+
+  # Go to AWS S3 (https://s3.console.aws.amazon.com/s3/)                                                           
+  #   Search for the elasticbeanstalk bucket that matches                                                            
+  #   the region where you created the application. 
+  bucket_name: "elasticbeanstalk-us-east-1-896241416230"
+  
+  # Elastic Beanstalk Application Name  
+  bucket_path: "docker-react-frontend"  
+
+  on:
+    branch: master
+  
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
